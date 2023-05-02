@@ -27,7 +27,7 @@ const  Header = () => {
                 Blog
               </Nav.Link>
             </Nav>
-            {loggedIn ? (
+           
               <NavDropdown
                 title={
                   <Image
@@ -42,11 +42,11 @@ const  Header = () => {
                 <NavDropdown.Item>{userName}</NavDropdown.Item>
                 <NavDropdown.Item onClick={handleLogout}>Logout</NavDropdown.Item>
               </NavDropdown>
-            ) : (
+            
               <Nav.Link as={Link} to="/login">
                 Login
               </Nav.Link>
-            )}
+  
           </Navbar.Collapse>
         </Container>
       </Navbar>
