@@ -11,6 +11,7 @@ import Home from './Home/Home.jsx';
 import Blog from './Components/Blog/Blog';
 import Login from './Components/Login/Login';
 import Register from './Components/Register/Register';
+import Chefs from './Home/Chefs';
 
 const router = createBrowserRouter([
   {
@@ -20,7 +21,11 @@ const router = createBrowserRouter([
       {
         path: '/',
         element:<Home></Home>,
-        // loader: ({ params }) => fetch(`http://localhost:5000/chefs`)
+        // loader: () => fetch('http://localhost:5000/chefs')
+      },
+      {
+        path: '/chefs',
+        element:<Chefs></Chefs>
       },
       {
         path:"blog",

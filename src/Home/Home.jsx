@@ -1,27 +1,38 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container, Row, Col, Image } from 'react-bootstrap';
-import { useLoaderData } from 'react-router-dom';
+import backgroundImage from "../../public/Common-Skills-Needed-to-be-a-Chef.jpg";
 const Home = () => {
-  const chefs = useLoaderData()
-  console.log(chefs);
+
+    const [chefData , setChefData] = useState([]);
+
+    useEffect(() =>{
+      fetch("http://localhost:5000/chefs")
+    .then((res) => res.json())
+    .then((data) => setChefData(data));
+    
+    },[])
+    console.log(chefData);
     return (
         <div>
-            <Container fluid className="bg-light container">
+           <div
+      className="bg-image container "
+      style={{ backgroundImage: `url(${backgroundImage})`, width:'60%',height:"500px" }}
+    >
+           <Container fluid className=" container">
       <Row>
-        <Col xs={12} md={6} className="py-5">
-          <h1 className="display-4">Welcome to My Website</h1>
+        <div xs={12} md={6} className="py-5 text-white ">
+          <h1 className="display-4 mt-6">Welcome to My Website</h1>
           <p className="lead">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eu
             mauris sed nibh tincidunt hendrerit. Duis vel suscipit arcu. In
             quis velit sed lectus egestas eleifend vitae non elit. Integer non
             velit sed velit facilisis dictum.
           </p>
-        </Col>
-        <Col xs={12} md={6} className="d-flex align-items-center justify-content-center">
-          <Image src="https://ibb.co/jRydYMG" fluid />
-        </Col>
+        </div>
+        
       </Row>
     </Container>
+           </div>
         </div>
     );
 };

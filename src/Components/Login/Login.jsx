@@ -39,7 +39,7 @@ const  Login = () => {
 
       <hr className="mt-5 mb-5" />
 
-      <p>Don't have an account? <Link to="/registration">Sign up here</Link></p>
+      <p>Don't have an account? <Link to="/register">Sign up here</Link></p>
     </div>
   );
 }
