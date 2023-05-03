@@ -12,6 +12,7 @@ import Blog from './Components/Blog/Blog';
 import Login from './Components/Login/Login';
 import Register from './Components/Register/Register';
 import Chefs from './Home/Chefs';
+import ChefRecipes from './Components/ChefRecipes/ChefRecipes';
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
       {
         path:"register",
         element:<Register></Register>
+      },
+      {
+        path:"/chef/:id",
+        element: <ChefRecipes></ChefRecipes>
       }
     ]
   },

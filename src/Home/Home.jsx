@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Row, Col, Image } from 'react-bootstrap';
 import backgroundImage from "../../public/Common-Skills-Needed-to-be-a-Chef.jpg";
+import ShowChefData from '../Components/showChefData/ShowChefData';
+
 const Home = () => {
 
     const [chefData , setChefData] = useState([]);
@@ -11,7 +13,6 @@ const Home = () => {
     .then((data) => setChefData(data));
     
     },[])
-    console.log(chefData);
     return (
         <div>
            <div
@@ -29,9 +30,13 @@ const Home = () => {
             velit sed velit facilisis dictum.
           </p>
         </div>
-        
       </Row>
     </Container>
+           </div>
+           <div className='chefs-card container'>
+            {
+              chefData.map(data => <ShowChefData key={data.id} data={data}></ShowChefData>)
+            }
            </div>
         </div>
     );
