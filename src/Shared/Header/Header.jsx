@@ -59,7 +59,7 @@ const Header = () => {
           }
 
           {
-            user ? <Link to="/register"> <button className="btn fw-bold" onClick={handleLogout}>Logout</button></Link> : <Link to="/login"> <button className="btn fw-bold" onClick={handleLogin}>Login</button></Link>
+            user ? <Link to="/login"> <button className="btn fw-bold" onClick={handleLogout}>Logout</button></Link> : <Link to="/login"> <button className="btn fw-bold" onClick={handleLogin}>Login</button></Link>
           }
         </Navbar.Collapse>
       </Container>

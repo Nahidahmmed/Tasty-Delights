@@ -1,10 +1,15 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../Providers/AuthProvider';
 import { Navigate, useLocation } from 'react-router-dom';
+import Spinner from 'react-bootstrap/Spinner';
 
 const PrivateRoute = ({children}) => {
-    const {user} = useContext(AuthContext);
+    const {user,loading} = useContext(AuthContext);
     const location = useLocation();
+    if(loading){
+        return   <Spinner style={{width:"300px", height:"300px",marginLeft:'25%'}} animation="border" variant="dark" />
+    }
+
     if(user){
         return children;
     }
