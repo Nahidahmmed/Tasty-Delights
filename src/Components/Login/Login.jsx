@@ -11,12 +11,12 @@ const  Login = () => {
       <Form>
         <Form.Group controlId="formBasicEmail">
         
-          <Form.Control className="mx-auto mt-5" style={{width:"50%"}} type="email" placeholder="Enter email" />
+          <Form.Control className="mx-auto mt-5" style={{width:"50%"}} name="email" type="email" placeholder="Enter email" required />
         </Form.Group>
 
         <Form.Group controlId="formBasicPassword">
         
-          <Form.Control className="mx-auto mt-4" style={{width:"50%"}} type="password" placeholder="Password" />
+          <Form.Control className="mx-auto mt-4" style={{width:"50%"}} name="password" type="password" placeholder="Password" required/>
         </Form.Group>
 
         <Button style={{width:"50%"}} variant="primary" type="submit">
