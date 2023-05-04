@@ -6,7 +6,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 
 const Login = () => {
-  const { signIn, signInWithGoogle } = useContext(AuthContext);
+  const { signIn, signInWithGoogle,signWithGithub } = useContext(AuthContext);
   const navigate = useNavigate()
   const location = useLocation()
   const [errorMsg, setErrorMsg] = useState('');
@@ -45,6 +45,18 @@ const Login = () => {
         console.log(error.message);
       })
   }
+
+  const handleGithubSignUp =()=>{
+    signWithGithub()
+    .then(res => {
+      const githubUser = res.user;
+      console.log(githubUser);
+    })
+    .catch(error =>{
+      console.log(error);
+    })
+
+  }
   return (
     <div className="container mt-5 text-center">
       <h1 className="fw-bold text-center">Login</h1>
@@ -72,7 +84,7 @@ const Login = () => {
         <Button onClick={handleGoogleSignIn} variant="outline-danger" className="me-3">
           <FaGooglePlusG /> Google
         </Button>
-        <Button variant="outline-dark">
+        <Button  onClick={handleGithubSignUp}  variant="outline-dark">
           <AiOutlineGithub></AiOutlineGithub> GitHub
         </Button>
       </div>

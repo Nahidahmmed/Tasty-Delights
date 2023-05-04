@@ -3,13 +3,16 @@ import { Form, Button } from "react-bootstrap";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { FaGooglePlusG ,  } from 'react-icons/fa';
 import { AiOutlineGithub } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
+import { signInWithPopup } from "firebase/auth";
+const from = location.state?.from?.pathname || '/';
 
 
 
 const Register = () => {
 const [currentUser, setCurrentUser] = useState(null);
-  const {createUser,signInWithGoogle} = useContext(AuthContext);
+const navigate = useNavigate()
+  const {createUser,signInWithGoogle,signWithGithub} = useContext(AuthContext);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -25,6 +28,7 @@ const [currentUser, setCurrentUser] = useState(null);
           const createdUser = result.user;
           console.log(createdUser);
           setCurrentUser(currentUser);
+          navigate(from, { replace: true });
         })
         .catch(error =>{
           console.log(error);
@@ -40,6 +44,18 @@ const [currentUser, setCurrentUser] = useState(null);
       .catch(error =>{
         console.log(error.message);
       })
+    }
+
+    const handleGithubSignUp =()=>{
+      signWithGithub()
+      .then(res => {
+        const githubUser = res.user;
+        console.log(githubUser);
+      })
+      .catch(error =>{
+        console.log(error);
+      })
+
     }
  
     return (
@@ -96,7 +112,7 @@ const [currentUser, setCurrentUser] = useState(null);
         <Button onClick={handleGoogleSignUp} variant="outline-danger" className="me-3">
            <FaGooglePlusG /> Google
         </Button>
-        <Button variant="outline-dark">
+        <Button onClick={handleGithubSignUp} variant="outline-dark">
           <AiOutlineGithub></AiOutlineGithub> GitHub
         </Button>
       </div>
