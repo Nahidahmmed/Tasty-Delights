@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Row, Col, Image, Button } from 'react-bootstrap';
+import { Container, Row, Col, Image, Button, Card } from 'react-bootstrap';
 import backgroundImage from "../../public/Common-Skills-Needed-to-be-a-Chef.jpg";
 import ShowChefData from '../Components/showChefData/ShowChefData';
 
@@ -10,7 +10,7 @@ const Home = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("http://localhost:5000/chefs");
+        const res = await fetch("https://assignment-10-surver-nahidahmmed.vercel.app/chefs");
         const data = await res.json();
         setChefData(data);
       } catch (error) {
@@ -29,7 +29,7 @@ const Home = () => {
       >
         <Container fluid className=" container">
           <Row>
-            <div xs={12} md={6} className="py-5 text-white ">
+            <div md={6} className="py-5 text-white " style={{width:'600px'}}>
               <h1 className="display-4 mt-6">Welcome to My Website</h1>
               <p className="lead">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eu
@@ -46,6 +46,37 @@ const Home = () => {
           chefData.map(data => <ShowChefData key={data.id} data={data}></ShowChefData>)
         }
       </div>
+
+
+      <div className='container mt-5'>
+      <h2 className='text-center fw-bolder fs-1'>Login Statistics</h2>
+      <Row className='mt-5'>
+        <Col>
+          <Card className='text-center' style={{height:"200px" , width:'300px'}}>
+            <Card.Body>
+              <Card.Title className='fw-bold fs-3 mt-4'>Daily Logins</Card.Title>
+              <Card.Text className='fw-bold fs-1'>1k</Card.Text>
+            </Card.Body>
+          </Card>
+        </Col>
+        <Col>
+          <Card className='text-center'  style={{height:"200px" , width:'300px'}}>
+            <Card.Body>
+              <Card.Title className='fw-bold fs-3 mt-4'>Monthly Logins</Card.Title>
+              <Card.Text className='fw-bold fs-1'>3k</Card.Text>
+            </Card.Body>
+          </Card>
+        </Col>
+        <Col>
+          <Card className='text-center'  style={{height:"200px" , width:'300px'}}>
+            <Card.Body>
+              <Card.Title className='fw-bold fs-3 mt-4'>Yearly Logins</Card.Title>
+              <Card.Text className='fw-bold fs-1'>50k</Card.Text>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+    </div>
       {/* about us */}
       <div>
         <Container className="py-5 text-center">

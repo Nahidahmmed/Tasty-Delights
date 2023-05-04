@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { Form, Button } from "react-bootstrap";
+import React, { useContext, useState } from "react";
+import { Form, Button, Alert } from "react-bootstrap";
 import { FaGooglePlusG, } from 'react-icons/fa';
 import { AiOutlineGithub } from "react-icons/ai";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -9,6 +9,8 @@ const Login = () => {
   const { signIn, signInWithGoogle } = useContext(AuthContext);
   const navigate = useNavigate()
   const location = useLocation()
+  const [errorMsg, setErrorMsg] = useState('');
+  const [showError, setShowError] = useState(false);
   const from = location.state?.from?.pathname || '/';
   ;
   const handleSignIn = (event) => {
@@ -16,6 +18,11 @@ const Login = () => {
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
+    if (password.length < 6) {
+      setShowError(true);
+      setErrorMsg('Password must be at least 6 characters long.');
+      return;
+    }
     console.log(email, password);
     signIn(email, password)
       .then(result => {
@@ -56,7 +63,7 @@ const Login = () => {
           Login
         </Button>
       </Form>
-
+      {errorMsg && <p className="text-danger">{errorMsg}</p>}
       <hr className="mt-5 mb-5" />
 
       <h3>Or sign in with</h3>
@@ -70,6 +77,7 @@ const Login = () => {
         </Button>
       </div>
       <p className="mt-2 mb-5">Don't have an account? <Link to="/register">Sign up here</Link></p>
+
     </div>
   );
 }

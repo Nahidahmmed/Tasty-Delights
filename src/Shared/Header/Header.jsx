@@ -6,11 +6,10 @@ import { Dropdown } from "react-bootstrap";
 import { AuthContext } from "../../Providers/AuthProvider";
 
 const Header = () => {
-  const [loggedIn, setLoggedIn] = useState(true); // change to false if user is not logged in
-  const [userName, setUserName] = useState("we"); // change to user's name if available
+  const [loggedIn, setLoggedIn] = useState(true);
 
   const {user,logOut} = useContext(AuthContext);
-  console.log(user);
+  console.log( 'this is user ',user);
 
   const handleLogout = () => {
     logOut()
@@ -51,9 +50,7 @@ const Header = () => {
               />
             </Dropdown.Toggle>
             <Dropdown.Menu>
-              <Dropdown.Item href="#/action-1"></Dropdown.Item>
-              <Dropdown.Item href="#/action-2">Option 2</Dropdown.Item>
-              <Dropdown.Item href="#/action-3">Option 3</Dropdown.Item>
+              <Dropdown.Item href="#/action-1">user name</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
           }
